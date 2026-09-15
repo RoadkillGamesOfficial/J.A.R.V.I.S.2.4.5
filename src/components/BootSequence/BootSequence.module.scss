@@ -1,0 +1,97 @@
+
+@import '../../styles/_variables';
+
+.bootOverlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.centerContainer {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arcReactor {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 40px;
+
+  .ring {
+    position: absolute;
+    inset: 0;
+    border: 2px solid $neon-blue;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: rotate 1.5s linear infinite;
+
+    &:nth-child(2) {
+      inset: 15px;
+      animation-direction: reverse;
+      animation-duration: 2s;
+      opacity: 0.7;
+    }
+    &:nth-child(3) {
+      inset: 30px;
+      animation-duration: 1s;
+      opacity: 0.5;
+    }
+  }
+}
+
+.loadingInfo {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+
+  .percentage {
+    font-size: 2rem;
+    color: $neon-blue;
+    @include hud-glow;
+    margin-bottom: 10px;
+  }
+
+  .barContainer {
+    height: 4px;
+    background: rgba($neon-blue, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    .bar {
+      height: 100%;
+      background: $neon-blue;
+      box-shadow: 0 0 10px $neon-blue;
+    }
+  }
+}
+
+.terminal {
+  width: 100%;
+  font-size: 0.75rem;
+  color: rgba($neon-blue, 0.6);
+  height: 100px;
+  .logLine {
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+    animation: typing 0.5s steps(30, end);
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
