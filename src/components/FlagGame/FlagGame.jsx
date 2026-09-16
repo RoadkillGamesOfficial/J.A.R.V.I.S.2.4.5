@@ -46,7 +46,7 @@ const FlagGame = () => {
             <img
               src={currentFlag.image}
               alt="Country Flag"
-              className={revealed ? styles.revealed : styles.blurred}
+              className={styles.revealed}
             />
           )}
           {revealed && (
