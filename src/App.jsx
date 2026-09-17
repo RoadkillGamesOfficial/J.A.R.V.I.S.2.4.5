@@ -3,7 +3,7 @@ import BootSequence from './components/BootSequence/BootSequence';
 import WeatherHub from './components/WeatherHub/WeatherHub';
 import FlagGame from './components/FlagGame/FlagGame';
 import FitnessMatrix from './components/FitnessMatrix/FitnessMatrix';
-import CognitiveCryptogram from './components/CognitiveCryptogram/CognitiveCryptogram';
+import ChuckNorrisJoke from './components/ChuckNorrisJoke/ChuckNorrisJoke';
 import './App.scss';
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
             <WeatherHub />
             <FlagGame />
             <FitnessMatrix />
-            <CognitiveCryptogram />
+            <ChuckNorrisJoke />
           </div>
         </div>
       )}
