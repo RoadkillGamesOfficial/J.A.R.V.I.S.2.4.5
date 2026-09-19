@@ -10,6 +10,13 @@ const FitnessMatrix = () => {
 
   const dailyGoal = 100;
 
+  // SVG ring geometry (r=54 within a 120x120 viewBox). A stroke-dasharray is
+  // measured in path units, so dash lengths must be expressed against the
+  // circle's circumference (2 * PI * r ~= 339.29) for a 100/100 goal to fill
+  // the entire ring instead of only ~29% of it.
+  const progressRadius = 54;
+  const progressCircumference = 2 * Math.PI * progressRadius;
+
   const increment = (exercise, amount) => {
     setFitnessData(prev => ({
       ...prev,
@@ -18,7 +25,8 @@ const FitnessMatrix = () => {
   };
 
   const calculateProgress = (value) => {
-    return (value / dailyGoal) * 100;
+    const clamped = Math.min(value, dailyGoal);
+    return (clamped / dailyGoal) * progressCircumference;
   };
 
   return (
@@ -37,7 +45,7 @@ const FitnessMatrix = () => {
                   stroke="rgba(0, 209, 255, 0.1)"
                   strokeWidth="10"
                   fill="transparent"
-                  r="54"
+                  r={progressRadius}
                   cx="60"
                   cy="60"
                 />
@@ -46,10 +54,10 @@ const FitnessMatrix = () => {
                   stroke="#00d1ff"
                   strokeWidth="10"
                   fill="transparent"
-                  r="54"
+                  r={progressRadius}
                   cx="60"
                   cy="60"
-                  strokeDasharray={`${calculateProgress(count)} 100`}
+                  strokeDasharray={`${calculateProgress(count)} ${progressCircumference}`}
                   strokeLinecap="round"
                 />
               </svg>

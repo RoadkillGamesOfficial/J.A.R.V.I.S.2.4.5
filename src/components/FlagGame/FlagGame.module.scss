@@ -74,13 +74,13 @@
     .countryName {
       margin-top: 20px;
     color: $neon-blue;
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 2px;
       text-align: center;
       overflow-wrap: break-word;
       word-break: break-word;
-      max-width: 240px;
+      max-width: 300px;
     @include hud-glow;
       animation: slideUp 0.3s ease-out;
     }
