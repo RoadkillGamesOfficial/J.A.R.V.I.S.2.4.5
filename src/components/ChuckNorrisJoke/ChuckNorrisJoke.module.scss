@@ -48,37 +48,11 @@
     p {
       color: $neon-blue;
       font-size: 1rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
       @include hud-glow;
 }
   }
 
-  .actionBtn {
-    padding: 10px 20px;
-    background: rgba(0, 209, 255, 0.1);
-    color: $neon-blue;
-    border: 1px solid rgba(0, 209, 255, 0.3);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
-    @include hud-glow;
-
-    &:hover {
-      background: rgba(0, 209, 255, 0.2);
-    }
-  }
-
-  .solution {
-    padding: 15px;
-    background: rgba(0, 209, 255, 0.05);
-    border-radius: 8px;
-    width: 100%;
-    text-align: center;
-
-    p {
-      color: $tech-amber;
-      font-size: 1.2rem;
-      @include hud-glow;
-    }
-  }
 }
+

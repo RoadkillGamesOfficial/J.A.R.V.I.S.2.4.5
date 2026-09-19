@@ -37,7 +37,7 @@ const FlagGame = () => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.icon}>▲</span>
+        <span className={styles.icon}>◈</span>
         <h3>TERRITORY IDENTIFICATION</h3>
       </div>
       <div className={styles.main}>

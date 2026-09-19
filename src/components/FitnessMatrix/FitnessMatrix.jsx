@@ -24,7 +24,7 @@ const FitnessMatrix = () => {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.icon}>⚡</span>
+        <span className={styles.icon}>◈</span>
         <h3>FITNESS MATRIX</h3>
       </div>
       <div className={styles.main}>
@@ -35,29 +35,29 @@ const FitnessMatrix = () => {
                 <circle
                   className={styles.progressRingCircleBg}
                   stroke="rgba(0, 209, 255, 0.1)"
-                strokeWidth="10"
-                fill="transparent"
-                r="54"
-                cx="60"
-                cy="60"
-              />
-              <circle
+                  strokeWidth="10"
+                  fill="transparent"
+                  r="54"
+                  cx="60"
+                  cy="60"
+                />
+                <circle
                   className={styles.progressRingCircleFg}
                   stroke="#00d1ff"
-                strokeWidth="10"
-                fill="transparent"
-                r="54"
-                cx="60"
-                cy="60"
+                  strokeWidth="10"
+                  fill="transparent"
+                  r="54"
+                  cx="60"
+                  cy="60"
                   strokeDasharray={`${calculateProgress(count)} 100`}
-                strokeLinecap="round"
-              />
-            </svg>
+                  strokeLinecap="round"
+                />
+              </svg>
               <div className={styles.progressText}>
                 <span>{count}</span>
-              <span>/ {dailyGoal}</span>
+                <span>/ {dailyGoal}</span>
+              </div>
             </div>
-          </div>
             <div className={styles.exerciseInfo}>
               <h4>{exercise.toUpperCase()}</h4>
               <div className={styles.buttons}>
@@ -77,8 +77,8 @@ const FitnessMatrix = () => {
             </div>
           </div>
         ))}
-          </div>
-        </div>
+      </div>
+    </div>
   );
 };
 

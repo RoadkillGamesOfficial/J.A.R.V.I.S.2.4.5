@@ -42,7 +42,6 @@ $monospace-font: 'JetBrains Mono', 'Fira Code', monospace;
 
 @mixin scanline {
   position: relative;
-  overflow: hidden;
   &::after {
     content: "";
     position: absolute;
@@ -58,6 +57,7 @@ $monospace-font: 'JetBrains Mono', 'Fira Code', monospace;
     background-size: 100% 4px;
     pointer-events: none;
     z-index: 10;
+    border-radius: inherit;
   }
 }
 
