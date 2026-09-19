@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import styles from './WeatherHub.module.scss';
 import { WeatherData } from '../../sources/WeatherDataSource';
 
@@ -12,6 +12,50 @@ const WeatherHub = () => {
         timeZone: 'America/Los_Angeles' // <--- Explicitly pins formatting to Isla Vista
       })
     : 'N/A';
+
+  // Trigger speech synthesis once when the component mounts
+  useEffect(() => {
+    const speakWeather = () => {
+      const high = Math.round(WeatherData.temperature_max);
+      const low = Math.round(WeatherData.temperature_min);
+      const wind = Math.round(WeatherData.wind_speed_max);
+
+      const phrase = `Welcome back, sir. The high today is ${high} degrees, and the low is ${low} degrees, with winds up to ${wind} miles per hour.`;
+      const jarvis = new SpeechSynthesisUtterance(phrase);
+
+      // Get all available voices from the browser
+      const voices = window.speechSynthesis.getVoices();
+
+      const jarvisVoice = voices.find(v => v.name.includes('Ryan (Natural)') && v.lang.startsWith('en-GB')) || // Edge Natural
+                          voices.find(v => v.name.includes('Oliver') && v.lang.startsWith('en-GB')) ||         // Elegant macOS voice
+                          voices.find(v => v.name.includes('Google') && v.lang.startsWith('en-GB') && v.name.toLowerCase().includes('male')) || // Google UK Male
+                          voices.find(v => v.lang.startsWith('en-GB')); // Fallback to any British voice
+
+      if (jarvisVoice) {
+        jarvis.voice = jarvisVoice;
+      }
+
+      // Fine-tune natural pacing
+      jarvis.rate = 0.95;  // Slightly slower than default makes it sound much less robotic
+      jarvis.pitch = 0.5;  // Drops the pitch for that deeper tone
+
+      window.speechSynthesis.speak(jarvis);
+    };
+
+    // Chrome/Edge load voices asynchronously. We must wait for them to load.
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = speakWeather;
+    }
+
+    // Trigger immediately if voices are already cached/cached by browser
+    if (window.speechSynthesis.getVoices().length > 0) {
+      speakWeather();
+    }
+
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, []);
 
   return (
     <div className={styles.card}>
